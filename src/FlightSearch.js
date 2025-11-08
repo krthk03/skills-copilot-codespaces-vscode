@@ -14,10 +14,12 @@ class FlightSearchEngine {
    * Search flights by departure and arrival cities
    */
   searchFlights(departureCity, arrivalCity) {
+    const departureLower = departureCity.toLowerCase();
+    const arrivalLower = arrivalCity.toLowerCase();
     return this.flights.filter(
       flight =>
-        flight.departure.city.toLowerCase().includes(departureCity.toLowerCase()) &&
-        flight.arrival.city.toLowerCase().includes(arrivalCity.toLowerCase())
+        flight.departure.city.toLowerCase().includes(departureLower) &&
+        flight.arrival.city.toLowerCase().includes(arrivalLower)
     );
   }
 
@@ -32,8 +34,9 @@ class FlightSearchEngine {
    * Filter flights by airline
    */
   filterByAirline(airlineName) {
+    const airlineNameLower = airlineName.toLowerCase();
     return this.flights.filter(
-      flight => flight.airline.toLowerCase().includes(airlineName.toLowerCase())
+      flight => flight.airline.toLowerCase().includes(airlineNameLower)
     );
   }
 
@@ -41,7 +44,9 @@ class FlightSearchEngine {
    * Get cheapest flights
    */
   getCheapestFlights(limit = 5) {
-    return [...this.flights]
+    // Use slice to avoid mutating original array, then sort in-place
+    return this.flights
+      .slice()
       .sort((a, b) => a.price - b.price)
       .slice(0, limit);
   }
@@ -50,13 +55,16 @@ class FlightSearchEngine {
    * Get fastest flights (by duration)
    */
   getFastestFlights(limit = 5) {
-    return [...this.flights]
-      .sort((a, b) => {
-        const aDuration = this.parseDuration(a.duration);
-        const bDuration = this.parseDuration(b.duration);
-        return aDuration - bDuration;
-      })
-      .slice(0, limit);
+    // Cache duration calculations for performance
+    const flightsWithDuration = this.flights.map(flight => ({
+      flight,
+      duration: this.parseDuration(flight.duration)
+    }));
+    
+    return flightsWithDuration
+      .sort((a, b) => a.duration - b.duration)
+      .slice(0, limit)
+      .map(item => item.flight);
   }
 
   /**
