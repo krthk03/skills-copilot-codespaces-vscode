@@ -63,9 +63,9 @@ class FlightSearchEngine {
    * Parse duration string to minutes
    */
   parseDuration(duration) {
-    const parts = duration.match(/(\d+)h\s*(\d+)m/);
+    const parts = duration.match(/(\d+)h (\d+)m/);
     if (!parts) return 0;
-    return parseInt(parts[1]) * 60 + parseInt(parts[2]);
+    return parseInt(parts[1], 10) * 60 + parseInt(parts[2], 10);
   }
 
   /**
