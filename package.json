@@ -1,0 +1,20 @@
+{
+  "name": "skills-copilot-codespaces-vscode",
+  "version": "1.0.0",
+  "description": "A simple web application demonstration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "demo",
+    "express",
+    "web-server"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

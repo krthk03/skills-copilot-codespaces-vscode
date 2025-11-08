@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Copilot Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Welcome to Skills Copilot Demo</h1>
+            <p class="subtitle">A simple web application running on Node.js + Express</p>
+        </header>
+        
+        <main>
+            <section class="info-card">
+                <h2>Application Status</h2>
+                <div id="status" class="status-box">
+                    <p>Loading status...</p>
+                </div>
+                <button onclick="checkStatus()" class="btn">Refresh Status</button>
+            </section>
+
+            <section class="info-card">
+                <h2>About This Application</h2>
+                <p>This is a demonstration web application built with:</p>
+                <ul>
+                    <li><strong>Backend:</strong> Node.js with Express</li>
+                    <li><strong>Frontend:</strong> HTML, CSS, JavaScript</li>
+                    <li><strong>Purpose:</strong> Learning and demonstration</li>
+                </ul>
+            </section>
+
+            <section class="info-card">
+                <h2>Quick Start</h2>
+                <div class="code-block">
+                    <code>npm install</code><br>
+                    <code>npm start</code>
+                </div>
+                <p>Then visit <code>http://localhost:3000</code></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built with ❤️ using GitHub Codespaces</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
