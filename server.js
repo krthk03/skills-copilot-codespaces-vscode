@@ -1,16 +1,11 @@
 const express = require('express');
-const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve static files from the public directory
+// Note: This is a demo application. In production, consider adding rate limiting.
 app.use(express.static('public'));
-
-// Root route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 // API endpoint example
 app.get('/api/status', (req, res) => {
