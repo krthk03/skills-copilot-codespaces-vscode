@@ -14,27 +14,27 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-check24-blue to-blue-700 flex items-center justify-center p-4">
-      <div className="max-w-4xl w-full">
+    <div className="min-h-screen bg-gradient-to-br from-check24-blue to-blue-700 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="max-w-4xl w-full fade-in">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
             ✈️ CHECK24 Flight Search
           </h1>
-          <p className="text-blue-100 text-lg">
+          <p className="text-blue-100 text-base sm:text-lg">
             AI-Powered Smart Flight Booking
           </p>
         </div>
 
         {/* Search Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 card-hover">
           <div className="flex items-center gap-2 mb-6 text-check24-blue">
-            <span className="text-2xl">⚡</span>
-            <h2 className="text-xl font-semibold">Smart Search</h2>
+            <span className="text-xl sm:text-2xl">⚡</span>
+            <h2 className="text-lg sm:text-xl font-semibold">Smart Search</h2>
           </div>
 
           <form onSubmit={handleSearch}>
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
               {/* From */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -44,7 +44,7 @@ const Home = () => {
                   type="text"
                   value={from}
                   onChange={(e) => setFrom(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent transition-all duration-200"
                   placeholder="Enter city"
                 />
               </div>
@@ -58,7 +58,7 @@ const Home = () => {
                   type="text"
                   value={to}
                   onChange={(e) => setTo(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent transition-all duration-200"
                   placeholder="Enter city"
                 />
               </div>
@@ -72,7 +72,7 @@ const Home = () => {
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent transition-all duration-200"
                 />
               </div>
 
@@ -84,7 +84,7 @@ const Home = () => {
                 <select
                   value={passengers}
                   onChange={(e) => setPassengers(Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-check24-blue focus:border-transparent transition-all duration-200"
                 >
                   {[1, 2, 3, 4, 5, 6].map((num) => (
                     <option key={num} value={num}>
@@ -113,7 +113,7 @@ const Home = () => {
             {/* Search Button */}
             <button
               type="submit"
-              className="w-full bg-check24-blue text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-opacity shadow-lg"
+              className="w-full bg-check24-blue text-white py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:opacity-90 transition-all duration-300 shadow-lg btn-hover-lift"
             >
               🔍 Search Flights
             </button>
