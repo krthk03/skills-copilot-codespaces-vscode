@@ -47,18 +47,18 @@ const Results = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-check24-blue text-white py-6 shadow-lg">
+      <div className="bg-check24-blue text-white py-4 sm:py-6 shadow-lg">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
             <div>
-              <h1 className="text-2xl font-bold mb-1">Flight Results</h1>
-              <p className="text-blue-100">
+              <h1 className="text-xl sm:text-2xl font-bold mb-1">Flight Results</h1>
+              <p className="text-blue-100 text-sm sm:text-base">
                 {from} → {to} • {date} • {passengers} passenger{passengers > 1 ? 's' : ''}
               </p>
             </div>
             <button
               onClick={() => navigate('/')}
-              className="px-4 py-2 bg-white text-check24-blue rounded-lg hover:bg-blue-50 transition-colors"
+              className="px-4 py-2 bg-white text-check24-blue rounded-lg hover:bg-blue-50 transition-colors text-sm sm:text-base"
             >
               ← Back to Search
             </button>
@@ -66,14 +66,14 @@ const Results = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
         {/* Tabs */}
-        <div className="bg-white rounded-lg shadow-md mb-6 p-2 flex gap-2">
+        <div className="bg-white rounded-lg shadow-md mb-6 p-2 flex flex-col sm:flex-row gap-2">
           <button
             onClick={() => sortFlights('cheapest')}
-            className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors ${
+            className={`flex-1 py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
               activeTab === 'cheapest'
-                ? 'bg-check24-blue text-white'
+                ? 'bg-check24-blue text-white shadow-md'
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
@@ -81,9 +81,9 @@ const Results = () => {
           </button>
           <button
             onClick={() => sortFlights('fastest')}
-            className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors ${
+            className={`flex-1 py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
               activeTab === 'fastest'
-                ? 'bg-check24-blue text-white'
+                ? 'bg-check24-blue text-white shadow-md'
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
@@ -91,15 +91,15 @@ const Results = () => {
           </button>
           <button
             onClick={() => sortFlights('smartrank')}
-            className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors relative ${
+            className={`flex-1 py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 relative text-sm sm:text-base ${
               activeTab === 'smartrank'
-                ? 'bg-check24-blue text-white'
+                ? 'bg-check24-blue text-white shadow-md'
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 flex-wrap">
               <span>⚡ SmartRank</span>
-              <span className="text-xs bg-yellow-400 text-gray-900 px-2 py-0.5 rounded">
+              <span className="text-xs bg-yellow-400 text-gray-900 px-2 py-0.5 rounded whitespace-nowrap">
                 Recommended
               </span>
             </div>
@@ -124,21 +124,21 @@ const Results = () => {
           {flights.map((flight) => (
             <div
               key={flight.id}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6"
+              className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-4 sm:p-6 card-hover"
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-6 flex-1">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 flex-1 w-full">
                   {/* Airline */}
                   <div className="text-center">
-                    <div className="text-4xl mb-2">{flight.logo}</div>
+                    <div className="text-3xl sm:text-4xl mb-2">{flight.logo}</div>
                     <p className="text-sm font-medium text-gray-700">{flight.airline}</p>
                   </div>
 
                   {/* Times */}
-                  <div className="flex items-center gap-4 flex-1">
+                  <div className="flex items-center gap-3 sm:gap-4 flex-1 w-full">
                     <div>
-                      <p className="text-2xl font-bold text-gray-900">{flight.departure}</p>
-                      <p className="text-sm text-gray-500">{from}</p>
+                      <p className="text-xl sm:text-2xl font-bold text-gray-900">{flight.departure}</p>
+                      <p className="text-xs sm:text-sm text-gray-500">{from}</p>
                     </div>
                     <div className="flex-1 text-center">
                       <div className="h-px bg-gray-300 relative">
@@ -149,21 +149,21 @@ const Results = () => {
                       <p className="text-xs text-gray-500 mt-2">Direct</p>
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-gray-900">{flight.arrival}</p>
-                      <p className="text-sm text-gray-500">{to}</p>
+                      <p className="text-xl sm:text-2xl font-bold text-gray-900">{flight.arrival}</p>
+                      <p className="text-xs sm:text-sm text-gray-500">{to}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Price and Book */}
-                <div className="text-right ml-6">
+                <div className="text-left sm:text-right w-full lg:w-auto lg:ml-6">
                   <div className="mb-3">
-                    <p className="text-3xl font-bold text-check24-blue">€{flight.price}</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-check24-blue">€{flight.price}</p>
                     <AIBadge text={`Verified ${flight.verified}`} className="mt-1" />
                   </div>
                   <button
                     onClick={() => handleBookFlight(flight)}
-                    className="w-full px-6 py-3 bg-check24-blue text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                    className="w-full lg:w-auto px-6 py-3 bg-check24-blue text-white rounded-lg font-semibold hover:opacity-90 transition-all duration-300 btn-hover-lift"
                   >
                     Book →
                   </button>
@@ -181,20 +181,21 @@ const Results = () => {
         {/* Floating AI Insights Button */}
         <button
           onClick={() => setShowInsights(!showInsights)}
-          className="fixed bottom-8 right-8 bg-check24-blue text-white px-6 py-3 rounded-full shadow-lg hover:opacity-90 transition-opacity flex items-center gap-2"
+          className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 bg-check24-blue text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300 flex items-center gap-2 text-sm sm:text-base btn-hover-lift z-30"
         >
           <span>⚡</span>
-          <span>Show AI Insights</span>
+          <span className="hidden sm:inline">Show AI Insights</span>
+          <span className="sm:hidden">Insights</span>
         </button>
 
         {/* AI Insights Drawer */}
         {showInsights && (
-          <div className="fixed inset-y-0 right-0 w-96 bg-white shadow-2xl p-6 overflow-y-auto z-50">
+          <div className="fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-2xl p-6 overflow-y-auto z-50 slide-in-left">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-check24-blue">AI Insights</h2>
               <button
                 onClick={() => setShowInsights(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 text-2xl"
               >
                 ✕
               </button>
