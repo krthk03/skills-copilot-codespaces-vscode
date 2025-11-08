@@ -17,6 +17,7 @@ const Extras = () => {
   ];
 
   const handleContinue = () => {
+    // Use find() is fine here as the arrays are small, but we can optimize if needed
     const selectedBaggage = baggageOptions.find((b) => b.value === baggage);
     const selectedInsurancePlan = insurancePlans.find((p) => p.id === selectedInsurance);
 

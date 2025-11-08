@@ -1,5 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+
+// Generate seat map outside component to avoid regeneration on every render
+const generateSeatMap = () => {
+  const seats = [];
+  for (let row = 0; row < 12; row++) {
+    const seatRow = [];
+    for (let col = 0; col < 4; col++) {
+      seatRow.push({
+        id: `${row + 1}${String.fromCharCode(65 + col)}`,
+        row: row + 1,
+        col: col + 1,
+        available: Math.random() > 0.3, // 70% available
+        price: row >= 5 && row <= 9 ? 15 : 20, // rows 6-10 are cheaper
+        recommended: row >= 5 && row <= 9,
+      });
+    }
+    seats.push(seatRow);
+  }
+  return seats;
+};
 
 const Seat = () => {
   const navigate = useNavigate();
@@ -10,17 +30,8 @@ const Seat = () => {
   const [selectedSeat, setSelectedSeat] = useState(null);
   const [showComparison, setShowComparison] = useState(false);
 
-  // Generate seat map (6 rows x 4 columns)
-  const seatMap = Array.from({ length: 12 }, (_, row) =>
-    Array.from({ length: 4 }, (_, col) => ({
-      id: `${row + 1}${String.fromCharCode(65 + col)}`,
-      row: row + 1,
-      col: col + 1,
-      available: Math.random() > 0.3, // 70% available
-      price: row >= 5 && row <= 9 ? 15 : 20, // rows 6-10 are cheaper
-      recommended: row >= 5 && row <= 9,
-    }))
-  );
+  // Memoize seat map to prevent regeneration on each render
+  const seatMap = useMemo(() => generateSeatMap(), []);
 
   const handleSeatSelect = (seat) => {
     if (seat.available) {
