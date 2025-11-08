@@ -17,6 +17,13 @@ const Results = () => {
   const [showInsights, setShowInsights] = useState(false);
   const [flights, setFlights] = useState(mockFlights);
 
+  const parseDuration = (duration) => {
+    const parts = duration.split(' ');
+    const hours = parseInt(parts[0]) || 0;
+    const minutes = parseInt(parts[1]) || 0;
+    return hours * 60 + minutes;
+  };
+
   const sortFlights = (type) => {
     let sorted = [...mockFlights];
     switch (type) {
@@ -24,11 +31,7 @@ const Results = () => {
         sorted.sort((a, b) => a.price - b.price);
         break;
       case 'fastest':
-        sorted.sort((a, b) => {
-          const durationA = parseInt(a.duration.split('h')[0]) * 60 + parseInt(a.duration.split(' ')[1]);
-          const durationB = parseInt(b.duration.split('h')[0]) * 60 + parseInt(b.duration.split(' ')[1]);
-          return durationA - durationB;
-        });
+        sorted.sort((a, b) => parseDuration(a.duration) - parseDuration(b.duration));
         break;
       case 'smartrank':
         sorted.sort((a, b) => b.score - a.score);

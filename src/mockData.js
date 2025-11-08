@@ -110,12 +110,23 @@ export const aiInsights = {
   onTimeRate: 95,
 };
 
-export const seatMap = Array.from({ length: 6 }, (_, row) =>
-  Array.from({ length: 4 }, (_, col) => ({
-    id: `${row + 1}${String.fromCharCode(65 + col)}`,
-    row: row + 1,
-    col: col + 1,
-    available: true,
-    price: row >= 5 && row <= 9 ? 15 : 20,
-  }))
-);
+// Pre-compute seat map for better performance
+const generateSeatMap = () => {
+  const seats = [];
+  for (let row = 0; row < 6; row++) {
+    const seatRow = [];
+    for (let col = 0; col < 4; col++) {
+      seatRow.push({
+        id: `${row + 1}${String.fromCharCode(65 + col)}`,
+        row: row + 1,
+        col: col + 1,
+        available: true,
+        price: row >= 5 && row <= 9 ? 15 : 20,
+      });
+    }
+    seats.push(seatRow);
+  }
+  return seats;
+};
+
+export const seatMap = generateSeatMap();
